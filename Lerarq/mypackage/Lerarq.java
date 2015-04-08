@@ -8,28 +8,52 @@ import java.io.InputStream;
 import java.io.InputStreamReader;  
 import java.io.FileReader;
 
+import java.util.StringTokenizer;
  
 public class Lerarq{  
       
     FileReader fileR;
     BufferedReader buff;
+    String linha;
+    String arquivo;
+
+
 
     public Lerarq()
     {
             try {
-                fileR = new FileReader("arq.duan");
+                fileR = new FileReader("arq.duan"); //IMPRIME POR LINHA
                 buff = new BufferedReader(fileR);
                 while (buff.ready())
                 {
-                    System.out.println(buff.readLine());
+                    linha = buff.readLine();
+                    arquivo += linha;
+                    //System.out.println(buff.readLine());
+                    System.out.println(linha);
                 }
                 buff.close();
             }
             catch(IOException e){
             
             }
+
+            System.out.println("Agora tudoxunto!"); //IMPRIME TUDOXUNTO
+            System.out.println(arquivo);
+
+
+
+        StringTokenizer tokens = new StringTokenizer(arquivo,"+"); // IMPRIME POR TOKENS
+        while(tokens.hasMoreTokens())
+        {
+            System.out.println(tokens.nextToken());
+        }
             
     }
+
+
+
+
+
 }
 
   
