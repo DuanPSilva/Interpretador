@@ -24,11 +24,12 @@ public class Lerarq{
             try {
                 fileR = new FileReader("arq.duan"); //IMPRIME POR LINHA
                 buff = new BufferedReader(fileR);
+                System.out.println("\nPOR LINHAS!\n");
                 while (buff.ready())
                 {
                     linha = buff.readLine();
                     arquivo += linha;
-                    //System.out.println(buff.readLine());
+                    
                     System.out.println(linha);
                 }
                 buff.close();
@@ -37,12 +38,13 @@ public class Lerarq{
             
             }
 
-            System.out.println("Agora tudoxunto!"); //IMPRIME TUDOXUNTO
-            System.out.println(arquivo);
+        System.out.println("\nAGORA TUDOXUNTO!\n"); //IMPRIME TUDOXUNTO
+        System.out.println(arquivo);
 
 
 
-        StringTokenizer tokens = new StringTokenizer(arquivo,"+"); // IMPRIME POR TOKENS
+        StringTokenizer tokens = new StringTokenizer(arquivo," "); // IMPRIME POR TOKENS
+        System.out.println("\nAGORA POR TOOKENS!\n");     
         while(tokens.hasMoreTokens())
         {
             System.out.println(tokens.nextToken());
