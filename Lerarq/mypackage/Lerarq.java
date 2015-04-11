@@ -14,12 +14,12 @@ public class Lerarq{
       
     FileReader fileR;
     BufferedReader buff;
-    String linha[]= new String[100];
-    String ordem[]= new String[100];    
+    public String linha[]= new String[100];
+    public String ordem[]= new String[100];    
+    //Intepretator inter= new Intepretator();
     String arquivo;
     int i=0;
     int o=0;
-    Comando c = new Comando();
 
 
     public Lerarq()
@@ -65,7 +65,7 @@ public class Lerarq{
     public void separa(){
         
         int x=0;
-        int o=0;
+        //int o=0;
         
         while(x<i){
             StringTokenizer tokens = new StringTokenizer(linha[x]," "); // IMPRIME POR TOKENS
@@ -74,14 +74,11 @@ public class Lerarq{
             {
                 ordem[o]=tokens.nextToken();
                 System.out.println(ordem[o]);
-                o++;
-         
+                o++;         
             }
             x++;
-            
         }
     }
-
 }
 
   
