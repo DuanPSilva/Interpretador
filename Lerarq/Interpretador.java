@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import mypackage.Lerarq;
 import java.util.StringTokenizer;
 class Interpretador{
@@ -8,21 +9,19 @@ class Interpretador{
 		Variavel var;
 		String op;
 		String ig[]=new String[2];
-		Double vlr;
+		Double vlr, vlr1;
 		int i=0;
 		while(cm.ordem[i]!=null){// && !cm.ordem[i].equals(""))
-			vlr=0.0;
-
-			op=cm.ordem[i];
-
+			
 			fac=cm.ordem[i];
-			i++;
+			
 			switch(fac){
-
 				case("num"):{// no caso da criação das variaveis
+					i++;
+					vlr=0.0;
 					fac=cm.ordem[i];
-
-					if(fac.indexOf(";")!=-1){// verifica se a variavel não é setada. int abc;
+					op=fac;
+					if(fac.indexOf(";")!=-1){// verifica se a variavel não é setada (cria var=0.0). int abc;
 						StringTokenizer tokens = new StringTokenizer(fac,";");
 						if(tokens.hasMoreTokens()){
 							op=tokens.nextToken();
@@ -36,25 +35,100 @@ class Interpretador{
 							StringTokenizer tokens = new StringTokenizer(fac,";");
 							if(tokens.hasMoreTokens()){
 								fac=tokens.nextToken();
-								System.out.println("OP= "+op);
-								System.out.println("FAC= "+fac);
 								vlr=Double.parseDouble(fac);// converte a string em double
-			//					System.out.println(vlr);
 								m.criaVariavel(op,vlr);			
 							}
 						}
 					}
-						
-
-						var=m.getVariavel(op);
-						System.out.println("Fim: "+var.getNome()+" "+var.getValor());
-					
-
-					
-					//i++;
+					var=m.getVariavel(op);
+					System.out.println("Fim: "+var.getNome()+" "+var.getValor());
 					break;
-				}default:
-					//System.out.println(cm.ordem[i]);
+				}
+				case("op"):{
+					i++;
+					vlr=0.0;
+					ig[0]=cm.ordem[i];
+					i++;
+					op=cm.ordem[i];
+					i++;
+					ig[1]=cm.ordem[i];
+					i++;
+					fac=cm.ordem[i];
+
+					var=(m.getVariavel(ig[0]));
+					if(var!=null)
+						vlr=var.getValor();	
+					else
+						vlr=Double.parseDouble(ig[0]);
+					var=(m.getVariavel(ig[1]));
+					if(var!=null)
+						vlr1=var.getValor();	
+					else
+						vlr1=Double.parseDouble(ig[1]);
+					switch(op){
+						case("+"):{
+							vlr=vlr+vlr1;	
+							break;
+						}
+						case("-"):{
+							vlr=vlr-vlr1;
+							break;
+						}
+						case("x"):{
+							vlr=vlr*vlr1;
+							break;
+						}
+						case("÷"):{
+							vlr=vlr/vlr1;
+							break;
+						}
+						case("%"):{
+							vlr=vlr%vlr1;
+							break;
+						}
+					}
+					if(fac.equals(":")){
+						i++;
+						fac=cm.ordem[i];
+						StringTokenizer tokens = new StringTokenizer(fac,";");
+						while(tokens.hasMoreTokens()){
+							fac=tokens.nextToken();
+						}
+					}else{
+						StringTokenizer tokens = new StringTokenizer(fac,";:");
+						while(tokens.hasMoreTokens()){
+							fac=tokens.nextToken();
+						}
+					}
+					var=m.getVariavel(fac);
+					m.criaVariavel(fac,vlr);
+					break;
+				}
+				case("ler"):{// ler sua frase aqui será escrita até o caracter ":" abc;
+					i++;
+					
+					while(!fac.equals(":")){
+						fac=cm.ordem[i];
+						i++;
+						System.out.printf(fac+"1 ");
+					}
+					Scanner s = new Scanner(System.in);
+					fac=cm.ordem[i];
+					vlr=s.nextDouble();
+					if(fac.indexOf(";")!=-1){	
+							StringTokenizer tokens = new StringTokenizer(fac,";");
+							while(tokens.hasMoreTokens())
+								fac=tokens.nextToken();
+					}else{
+						fac=cm.ordem[i];
+					
+					}
+					m.criaVariavel(fac,vlr);
+					break;
+				}
+
+				default:
+					System.out.println("ge"+cm.ordem[i]);
 				/*
 				case("func"){// caso de Criação de um escopo de função.
 					break;
@@ -79,5 +153,6 @@ class Interpretador{
 			i++;
 
 		}
+		m.exibe();
 	}
 }	
