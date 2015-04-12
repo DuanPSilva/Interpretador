@@ -2,12 +2,9 @@ num abc 3;
 num abcd 3;
 
 num 123;
-num bonita 1;
-num bonito 2;
+num bonita 1.5;
+num bonito 2.2;
+ler ler um numero qualquer : abc;
+ler numero que quero saber se é primo : 123;
+op abc + 123 :abcd;
 
-sas
-A+-,B#%
-OK ;)
-int abc 4;
-
-agora + saporra + funciona
