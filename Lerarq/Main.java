@@ -1,5 +1,5 @@
 import mypackage.Lerarq;	
-
+import java.io.File;
 
 public class Main
 {
@@ -8,7 +8,9 @@ public class Main
 	public static void main(String args[])
 	{
 		Interpretador inter= new Interpretador();
-		Lerarq leia = new Lerarq();
+		String arquivo = args[0];
+		File file = new File(arquivo);
+		Lerarq leia = new Lerarq(file);
 		leia.separa();
 		inter.comandos(leia);
 	}

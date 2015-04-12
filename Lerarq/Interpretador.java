@@ -41,7 +41,7 @@ class Interpretador{
 						}
 					}
 					var=m.getVariavel(op);
-					System.out.println("Fim: "+var.getNome()+" "+var.getValor());
+					//System.out.println("Fim: "+var.getNome()+" "+var.getValor());
 					break;
 				}
 				case("op"):{
@@ -110,25 +110,117 @@ class Interpretador{
 					while(!fac.equals(":")){
 						fac=cm.ordem[i];
 						i++;
-						System.out.printf(fac+"1 ");
+						var=m.getVariavel(fac);
+						if(var!=null)
+							System.out.println(var.getValor());
+						else if(fac.equals("||")){
+							System.out.printf("\n");
+						}
+						else if(fac.equals(":"))
+							System.out.printf("");
+						else
+							System.out.printf(fac+" ");
 					}
-					Scanner s = new Scanner(System.in);
+
 					fac=cm.ordem[i];
-					vlr=s.nextDouble();
 					if(fac.indexOf(";")!=-1){	
 							StringTokenizer tokens = new StringTokenizer(fac,";");
 							while(tokens.hasMoreTokens())
 								fac=tokens.nextToken();
 					}else{
 						fac=cm.ordem[i];
-					
+					}	
+					if(!fac.equals("|")){
+						Scanner s = new Scanner(System.in);
+						vlr=s.nextDouble();
+						m.criaVariavel(fac,vlr);
 					}
-					m.criaVariavel(fac,vlr);
 					break;
 				}
+				case("loop"):{
 
+					break;
+				}
+				case ("func"):{
+					//Mem aqui= new Mem();
+					i++;
+					ig[0]=cm.ordem[i];
+					i++;
+					op=cm.ordem[i];
+					i++;
+					ig[1]=cm.ordem[i];
+
+					var=(m.getVariavel(ig[0]));
+					if(var!=null)
+						vlr=var.getValor();	
+					else
+						vlr=Double.parseDouble(ig[0]);
+					var=(m.getVariavel(ig[1]));
+					if(var!=null)
+						vlr1=var.getValor();	
+					else
+						vlr1=Double.parseDouble(ig[1]);
+
+					switch(op){
+						case(">="):{
+							if(!(vlr>=vlr1))
+								break;
+							else{
+								while(!op.equals("pool")){}
+									i++;
+									op=cm.ordem[i];
+								}
+							break;
+						}
+						case("=="):{
+							if(!(vlr==vlr1))
+								break;
+							else{
+								while(!op.equals("pool")){}
+									i++;
+									op=cm.ordem[i];
+								}
+							break;
+						}
+						case("<="):{
+							if(!(vlr<=vlr1))
+								break;
+							else{
+								while(!op.equals("pool")){}
+									i++;
+									op=cm.ordem[i];
+								}
+							break;
+						}
+						case(">"):{
+							if(!(vlr>vlr1))
+								break;
+							else{
+								while(!op.equals("pool")){}
+									i++;
+									op=cm.ordem[i];
+								}
+							break;
+						}
+						case("<"):{
+							if(!(vlr<vlr1))
+								break;
+							else{
+								while(!op.equals("pool")){}
+									i++;
+									op=cm.ordem[i];
+								}
+							break;
+						}
+
+					}
+
+
+					//if(aqui.)
+					break;
+				}
 				default:
-					System.out.println("ge"+cm.ordem[i]);
+					//System.out.println("ge"+cm.ordem[i]);
 				/*
 				case("func"){// caso de Criação de um escopo de função.
 					break;
