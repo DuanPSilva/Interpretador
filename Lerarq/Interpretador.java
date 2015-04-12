@@ -2,6 +2,7 @@ import mypackage.Lerarq;
 import java.util.StringTokenizer;
 class Interpretador{
 	Mem m= new Mem();
+	//Numero n=new Numero();
 	public void comandos(Lerarq cm){
 		String fac;
 		Variavel var;
@@ -10,59 +11,56 @@ class Interpretador{
 		Double vlr;
 		int i=0;
 		while(cm.ordem[i]!=null){// && !cm.ordem[i].equals(""))
-		vlr=0.0;
+			System.out.println(cm.ordem[i]);
+			i++;
+		}
+		i=0;
+		while(cm.ordem[i]!=null){// && !cm.ordem[i].equals(""))
+			System.out.println(cm.ordem[i]);
+			vlr=0.0;
+
+			op=cm.ordem[i];
+			System.out.println(op);
+
 			fac=cm.ordem[i];
+			i++;
 			switch(fac){
+
 				case("int"):{// no caso da criação das variaveis
-					i++;					
-					op=cm.ordem[i];
-					i++;
-					
-					if(cm.ordem[i].equals("=")){ // o codigo está escrito com espaços. ex: int abc = 3;
-						i++;
-						fac=cm.ordem[i];
-						if(fac.indexOf(';')!=-1){//fim de linha
-							StringTokenizer tokens = new StringTokenizer(fac,";");
-							fac=tokens.nextToken();
-							vlr=Double.parseDouble(fac);// converte a string em double
-						}else{
-							vlr=Double.parseDouble(fac);
-						}
-					}/*else if(op.indexOf("=")!=-1){// verifica se o igual está na string ex: int abc=3;  
-						fac=cm.ordem[i-1];
-						StringTokenizer tokens = new StringTokenizer(fac,"=");
-						int x=0;
-						while(tokens.hasMoreTokens()){
-							ig[x]=tokens.nextToken();
-							x++;
-						}
-						op=ig[0];
-						System.out.println(ig[0]+ig[1]+cm.ordem[i-1]+cm.ordem[i]);
-						fac=ig[1];
-						if(fac.indexOf(';')!=-1){//fim de linha
-							StringTokenizer tok = new StringTokenizer(fac,";");
-							fac=tok.nextToken();
-							vlr=Double.parseDouble(fac);// converte a string em double
-						}else{
-							vlr=Double.parseDouble(fac);
-						}
-						//vlr=Double.parseDouble(ig[1]);
+					fac=cm.ordem[i];
 
-
-					}*/
-					else{ // é o caso onde não há atribuição. ex: int abc; o valor da var = 0.0
-						StringTokenizer tokens = new StringTokenizer(op,";");
+					if(fac.indexOf(";")!=-1){
+						StringTokenizer tokens = new StringTokenizer(fac,";");
 						if(tokens.hasMoreTokens()){
 							op=tokens.nextToken();
+							m.criaVariavel(op,0.0);			
+						}
+					}else {
+						op=cm.ordem[i];
+						i++;
+						fac=cm.ordem[i];
+						if(fac.indexOf(";")!=-1){
+							StringTokenizer tokens = new StringTokenizer(fac,";");
+							if(tokens.hasMoreTokens()){
+								fac=tokens.nextToken();
+								//System.out.println(fac);
+								vlr=Double.parseDouble(fac);// converte a string em double
+								//System.out.println(vlr);
+								m.criaVariavel(op,vlr);			
+							}
 						}
 					}
-					m.criaVariavel(op,vlr);			
+						
 
-					var=m.getVariavel(op);
-					System.out.println(var.getNome()+" "+var.getValor());
+						var=m.getVariavel(op);
+						System.out.println("Fim: "+var.getNome()+" "+var.getValor());
+					
+
+					
+					//i++;
 					break;
 				}default:
-					System.out.println(cm.ordem[i]);
+					//System.out.println(cm.ordem[i]);
 				/*
 				case("func"){// caso de Criação de um escopo de função.
 					break;
