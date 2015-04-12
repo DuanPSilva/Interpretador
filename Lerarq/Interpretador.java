@@ -11,31 +11,24 @@ class Interpretador{
 		Double vlr;
 		int i=0;
 		while(cm.ordem[i]!=null){// && !cm.ordem[i].equals(""))
-			System.out.println(cm.ordem[i]);
-			i++;
-		}
-		i=0;
-		while(cm.ordem[i]!=null){// && !cm.ordem[i].equals(""))
-			System.out.println(cm.ordem[i]);
 			vlr=0.0;
 
 			op=cm.ordem[i];
-			System.out.println(op);
 
 			fac=cm.ordem[i];
 			i++;
 			switch(fac){
 
-				case("int"):{// no caso da criação das variaveis
+				case("num"):{// no caso da criação das variaveis
 					fac=cm.ordem[i];
 
-					if(fac.indexOf(";")!=-1){
+					if(fac.indexOf(";")!=-1){// verifica se a variavel não é setada. int abc;
 						StringTokenizer tokens = new StringTokenizer(fac,";");
 						if(tokens.hasMoreTokens()){
 							op=tokens.nextToken();
 							m.criaVariavel(op,0.0);			
 						}
-					}else {
+					}else {// a variavel é criada e setada
 						op=cm.ordem[i];
 						i++;
 						fac=cm.ordem[i];
@@ -43,9 +36,10 @@ class Interpretador{
 							StringTokenizer tokens = new StringTokenizer(fac,";");
 							if(tokens.hasMoreTokens()){
 								fac=tokens.nextToken();
-								//System.out.println(fac);
+								System.out.println("OP= "+op);
+								System.out.println("FAC= "+fac);
 								vlr=Double.parseDouble(fac);// converte a string em double
-								//System.out.println(vlr);
+			//					System.out.println(vlr);
 								m.criaVariavel(op,vlr);			
 							}
 						}
