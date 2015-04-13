@@ -137,11 +137,11 @@ class Interpretador{
 					}
 					break;
 				}
-				case("loop"):{
+				case("func"):{
 
 					break;
 				}
-				case ("func"):{
+				case ("loop"):{
 					//Mem aqui= new Mem();
 					i++;
 					ig[0]=cm.ordem[i];
