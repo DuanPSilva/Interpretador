@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Scanner;// só feito isso
 import mypackage.Lerarq;
 import java.util.StringTokenizer;
 class Interpretador{
