@@ -2,11 +2,13 @@ package mypackage;
 
 import java.io.BufferedReader;  
 import java.io.FileInputStream;  
-
+import java.io.File;
 import java.io.IOException;  
 import java.io.InputStream;  
 import java.io.InputStreamReader;  
 import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import java.util.StringTokenizer;
  
@@ -20,12 +22,12 @@ public class Lerarq{
     String arquivo;
     int i=0;
     int o=0;
+    
 
-
-    public Lerarq()
+    public Lerarq(File arqu)
     {
         try {
-            fileR = new FileReader("arq.duan"); //IMPRIME POR LINHA
+            fileR = new FileReader(arqu); //IMPRIME POR LINHA
             buff = new BufferedReader(fileR);
             //System.out.println("\nPOR LINHAS!\n");
             
@@ -38,8 +40,13 @@ public class Lerarq{
             }
             buff.close();
         }
+
+        catch (FileNotFoundException ex){
+            System.out.println("ERRO 404");
+        }
+         
         catch(IOException e){
-        
+            System.out.println("fudeus");
         }
 /*
         //System.out.println("\n\n\n\n\n\nAGORA TUDOXUNTO!\n"); //IMPRIME TUDOXUNTO
@@ -69,11 +76,12 @@ public class Lerarq{
         
         while(x<i){
             StringTokenizer tokens = new StringTokenizer(linha[x]," "); // IMPRIME POR TOKENS
-            System.out.println("\n\n\n\nAGORA POR TOOKENS!\n");     
+            //System.out.println("\n\n\n\nAGORA POR TOOKENS!\n");     
             while(tokens.hasMoreTokens())
             {
                 ordem[o]=tokens.nextToken();
-                System.out.println(ordem[o]);
+                ordem[o]=ordem[o].trim();
+              //  System.out.println(ordem[o]);
                 o++;         
             }
             x++;
