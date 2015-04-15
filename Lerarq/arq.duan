@@ -1,22 +1,21 @@
 num abc 3;
-num abcd 3;
+num x 4;
+num abcd abc y 50 trinta 30 cinquenta er abc;
+op abc + trinta :er;
+ler quanta x coisa er  bonita abc:|;
+ler quanta coisa bonita:y;
+<if> x = 2
 
-num 123;
-num 
-+bonita
-1.5;
-num bonito 2.2;
-ler ler um numero || qualquer: : abc;
-ler numero que quero saber se é primo : 123;
-op abc + 123 :abcd;
-ler apenas mostra abcd || || || : |;
-loop 123 <= abc
-	op abc + 4 : abc;
-	op abc + abc : 123;
-pool
-num dez 10;
-op dez + 3 : dez;
-op 123 - dez : dez;
-ler dez : |;
-ler 123 : |;
-ler abc : |;
+	<if> y >= 1
+		ler mostra aqui a parada toda :|;
+	<fi>
+	ler  a abc  tr trinta  xis x :|;
+
+	op 10+trinta:x;
+	ler xis1 x :|;
+
+<fi>
+
+op 20+trinta: x;
+ler xis2 x :|;
+
