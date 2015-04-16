@@ -1,5 +1,5 @@
 class Mem{
-	private Variavel[] vetor= new Variavel[100];
+	private Variavel[] vetor= new Variavel[1000];
 
 	public Variavel getVariavel(String name){
 		Variavel var= new Variavel();

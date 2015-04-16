@@ -16,7 +16,7 @@ class Interpretador{
 			fac=cm.ordem[i];
 			
 			switch(fac){
-				case("num"):{// no caso da criação das variaveis
+				case("num:"):{// no caso da criação das variaveis
 					i++;
 					vlr=0.0;
 					fac=cm.ordem[i];
@@ -44,7 +44,7 @@ class Interpretador{
 					//System.out.println("Fim: "+var.getNome()+" "+var.getValor());
 					break;
 				}
-				case("op"):{
+				case("op:"):{
 					i++;
 					vlr=0.0;
 					ig[0]=cm.ordem[i];
@@ -104,7 +104,7 @@ class Interpretador{
 					m.criaVariavel(fac,vlr);
 					break;
 				}
-				case("ler"):{// ler sua frase aqui será escrita até o caracter ":" abc;
+				case("ler:"):{// ler sua frase aqui será escrita até o caracter ":" abc;
 					i++;
 					
 					while(!fac.equals(":")){
@@ -141,7 +141,7 @@ class Interpretador{
 
 					break;
 				}
-				case ("loop"):{
+				case ("se:"):{
 					//Mem aqui= new Mem();
 					i++;
 					ig[0]=cm.ordem[i];
@@ -166,7 +166,7 @@ class Interpretador{
 							if(!(vlr>=vlr1))
 								break;
 							else{
-								while(!op.equals("pool")){}
+								while(!op.equals("fimse")){}
 									i++;
 									op=cm.ordem[i];
 								}
@@ -176,7 +176,7 @@ class Interpretador{
 							if(!(vlr==vlr1))
 								break;
 							else{
-								while(!op.equals("pool")){}
+								while(!op.equals("fimse")){}
 									i++;
 									op=cm.ordem[i];
 								}
@@ -186,7 +186,7 @@ class Interpretador{
 							if(!(vlr<=vlr1))
 								break;
 							else{
-								while(!op.equals("pool")){}
+								while(!op.equals("fimse")){}
 									i++;
 									op=cm.ordem[i];
 								}
@@ -196,7 +196,7 @@ class Interpretador{
 							if(!(vlr>vlr1))
 								break;
 							else{
-								while(!op.equals("pool")){}
+								while(!op.equals("fimse")){}
 									i++;
 									op=cm.ordem[i];
 								}
@@ -206,7 +206,7 @@ class Interpretador{
 							if(!(vlr<vlr1))
 								break;
 							else{
-								while(!op.equals("pool")){}
+								while(!op.equals("fimse")){}
 									i++;
 									op=cm.ordem[i];
 								}
