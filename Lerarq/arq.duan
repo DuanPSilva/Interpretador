@@ -1,45 +1,25 @@
-<<<<<<< HEAD
-num: abc 3;
-num: abcd 3;
-ler: um numero || qualquer: : abc;
-ler: numero que quero saber se é primo : 123;
-op: abc + 123 :abcd;
-ler: apenas mostra abcd || || || : |; 
-num: dez 10;
-op: dez + 3 : dez;
-op: 123 - dez : dez;
-ler: abcd : |;
-ler: dez : |;
-ler: 123 : |;
-ler: abc : |;
-op: 45 + 45 : 45;
-ler: 45 : |;
-se: abc < 65   
-	ler: 45 : |;
-	ler: 45 : |;
-	ler: 45 : |;
-fimse
-ler: abc : |;	
-=======
 num abc 3;
-num x 4;
-num abcd abc y 50 trinta 30 cinquenta er abc;
-op abc + trinta :er;
-ler quanta x coisa er  bonita abc:|;
-ler quanta coisa bonita:y;
-<if> x = 2
-
-	<if> y >= 1
-		ler mostra aqui a parada toda :|;
-	<fi>
-	ler  a abc  tr trinta  xis x :|;
-
-	op 10+trinta:x;
-	ler xis1 x :|;
-
-<fi>
-
-op 20+trinta: x;
-ler xis2 x :|;
-
->>>>>>> origin/master
+num abcd 3;
+ler um numero || qualquer : abc;
+ler numero que quero saber se é primo : 123;
+op abc + 123 :abcd;
+ler apenas mostra abcd || || || : |; 
+num dez 10;
+op dez + 3 : dez;
+op 123 - dez : dez;
+ler abcd : |;
+ler dez : |;
+ler 123 : |;
+ler abc : |;
+op 45 + 45 : 45;
+ler 45 : |;
+se abc < 4
+	ler apenas entra if abc < 2 : |;
+	se abc = 4 
+		ler eu na prova de Prog1 : |;
+		fimse 
+	ler 45 a : |;
+	op 45 +3 :45;
+	ler antesfimse :|;
+fimse
+ler heh || :|;	
