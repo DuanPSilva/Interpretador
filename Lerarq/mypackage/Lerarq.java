@@ -16,8 +16,8 @@ public class Lerarq{
       
     FileReader fileR;
     BufferedReader buff;
-    public String linha[]= new String[100];
-    public String ordem[]= new String[100];    
+    public String linha[]= new String[1000];
+    public String ordem[]= new String[1000];    
     //Intepretator inter= new Intepretator();
     String arquivo;
     int i=0;
@@ -97,6 +97,4 @@ public class Lerarq{
             x++;
         }
     }
-}
-
-  
+} 

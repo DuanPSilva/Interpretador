@@ -1,5 +1,6 @@
 class Mem{
-	private Variavel[] vetor= new Variavel[1000];
+	private Variavel[] vetor= new Variavel[100000];
+	
 
 	public Variavel getVariavel(String name){
 		Variavel var= new Variavel();
@@ -25,13 +26,13 @@ class Mem{
 		 //System.out.println(vetor[y].getNome() + vetor[y].getValor());
 		 vetor[y].setNome(nome);
 		 vetor[y].setValor(vlr);
-		//System.out.println(vetor[y].getNome()+" " + vetor[y].getValor()+"\n");
+		//System.out.println("\n"+vetor[y].getNome()+" " + vetor[y].getValor()+"\n");
 	}	
 	public void exibe(){
 		Variavel var= new Variavel();
 		int c=0;
 		 while(vetor[c]!=null){
-		 	//System.out.println(vetor[c].getNome()+" "+vetor[c].getValor());
+		 //	System.out.println(vetor[c].getNome()+" "+vetor[c].getValor());
 		 	
 		 	c++;
 		 }

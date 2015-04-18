@@ -3,7 +3,7 @@ import mypackage.Lerarq;
 import java.util.StringTokenizer;
 class Interpretador{
 	Mem m= new Mem();
-	int vetor_de_if[]= new int[100];
+	//int vetor_de_if[]= new int[100];
 	//Numero n=new Numero();
 	public void comandos(Lerarq cm){
 		
@@ -18,7 +18,7 @@ class Interpretador{
 			fac=cm.ordem[i];
 			
 			switch(fac){
-				case("num:"):{// no caso da criação das variaveis
+				case("num"):{// no caso da criação das variaveis
 					i++;
 					while(!(cm.ordem[i].equals(";"))){
 						fac = cm.ordem[i];System.out.println("FAC = "+fac);
@@ -42,34 +42,10 @@ class Interpretador{
 						m.criaVariavel(fac,vlr);
 					i++;
 
-					}/*
-					vlr=0.0;
-					fac=cm.ordem[i];
-					op=fac;
-					if(fac.indexOf(";")!=-1){// verifica se a variavel não é setada (cria var=0.0). int abc;
-						StringTokenizer tokens = new StringTokenizer(fac,";");
-						if(tokens.hasMoreTokens()){
-							op=tokens.nextToken();
-							m.criaVariavel(op,0.0);			
-						}
-					}else {// a variavel é criada e setada
-						op=cm.ordem[i];
-						i++;
-						fac=cm.ordem[i];
-						if(fac.indexOf(";")!=-1){
-							StringTokenizer tokens = new StringTokenizer(fac,";");
-							if(tokens.hasMoreTokens()){
-								fac=tokens.nextToken();
-								vlr=Double.parseDouble(fac);// converte a string em double
-								m.criaVariavel(op,vlr);			
-							}
-						}
-					}
-					var=m.getVariavel(op);*/
-					//System.out.println("Fim: "+var.getNome()+" "+var.getValor());
+					}//System.out.println("Fim: "+var.getNome()+" "+var.getValor());
 					break;
 				}
-				case("op:"):{
+				case("op"):{
 					i++;
 					vlr=0.0;
 					ig[0]=cm.ordem[i];
@@ -119,12 +95,13 @@ class Interpretador{
 					m.criaVariavel(fac,vlr);
 					break;
 				}
-				case("ler:"):{// ler sua frase aqui será escrita até o caracter ":" abc;
+				case("ler"):{// ler sua frase aqui será escrita até o caracter ":" abc;
 					i++;
 					
 					while(!fac.equals(":")){
 						fac=cm.ordem[i];
 						i++;
+						//System.out.println("FAC + "+fac);
 						var=m.getVariavel(fac);
 						if(var!=null)
 							System.out.println(var.getValor());
@@ -149,9 +126,22 @@ class Interpretador{
 
 					break;
 				}
-<<<<<<< HEAD
-				case ("se:"):{
+				case ("se"):{
 					//Mem aqui= new Mem();
+					int a=1, c=i+1;
+					System.out.println("SE\n");
+					while(a>0){
+						if(cm.ordem[c].equals("se"))
+							a++;
+						if(cm.ordem[c].equals("fimse")){
+				System.out.println("ACHOU PORRA"+a);
+							a=a-1;
+	//						System.out.println(a);
+						}
+	//					System.out.println(cm.ordem[c]);
+	//					System.out.println(a);
+						c++;
+					}
 					i++;
 					ig[0]=cm.ordem[i];
 					i++;
@@ -173,53 +163,30 @@ class Interpretador{
 					switch(op){
 						case(">="):{
 							if(!(vlr>=vlr1))
+								i=c;
 								break;
-							else{
-								while(!op.equals("fimse")){}
-									i++;
-									op=cm.ordem[i];
-								}
-							break;
 						}
-						case("=="):{
+						case("="):{
 							if(!(vlr==vlr1))
+								i=c;
 								break;
-							else{
-								while(!op.equals("fimse")){}
-									i++;
-									op=cm.ordem[i];
-								}
-							break;
 						}
 						case("<="):{
 							if(!(vlr<=vlr1))
+								i=c++;
 								break;
-							else{
-								while(!op.equals("fimse")){}
-									i++;
-									op=cm.ordem[i];
-								}
-							break;
 						}
 						case(">"):{
-							if(!(vlr>vlr1))
+							if(vlr<vlr1)
+								i=c;
 								break;
-							else{
-								while(!op.equals("fimse")){}
-									i++;
-									op=cm.ordem[i];
-								}
-							break;
 						}
 						case("<"):{
-							if(!(vlr<vlr1))
+							if(!(vlr<vlr1)){
+								i=c++;
+								//System.out.println(cm.ordem[c]);
+							}
 								break;
-							else{
-								while(!op.equals("fimse")){}
-									i++;
-									op=cm.ordem[i];
-								}
-							break;
 						}
 
 					}
@@ -228,57 +195,14 @@ class Interpretador{
 					//if(aqui.)
 					break;
 				}
-=======
->>>>>>> origin/master
 				default:
-					//System.out.println("ge"+cm.ordem[i]);
-				/*
-				case("func"){// caso de Criação de um escopo de função.
-					break;
-				}
-				case("endfunc"){
-					break;
-				}
-				case("if"){//controle de fluxo if
-					break;
-				}
-				case("endif"){
-					break;
-				}
-				case("loop"){
-					break;
-				}
-				case("endloop"){
-					break;
-				}*/
+	//				System.out.println("ge"+cm.ordem[i]);
+				
 			}
 
 			i++;
 
 		}
-		m.exibe();
-	}
-	public void vetorif(int numif,int numfi){
-		int a = 0;
-		while(vetor_de_if[a]!=0){
-			a++;
-		}
-		vetor_de_if[a]=numif;
-		vetor_de_if[a+1]=numfi;
-	}
-	public int getvetorif(int numif){
-		int a=0;
-		int r;
-		while(vetor_de_if[a]!=numif){
-			a++;
-		}
-		while(vetor_de_if[a]==-1){
-			a--;
-		}
-		r=vetor_de_if[a+1];
-		vetor_de_if[a]=-1;
-		vetor_de_if[a+1]=-1;
-		return r;
-
+		//m.exibe();
 	}
 }	
