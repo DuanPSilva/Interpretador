@@ -3,8 +3,8 @@ import mypackage.Lerarq;
 import java.util.StringTokenizer;
 class Interpretador{
 	Mem m= new Mem();
-	//int vetor_de_if[]= new int[100];
-	//Numero n=new Numero();
+	Verifica verifica = new Verifica();
+	Loop loop = new Loop();
 	public void comandos(Lerarq cm){
 		
 		String fac, aux;
@@ -12,7 +12,7 @@ class Interpretador{
 		String op;
 		String ig[]=new String[2];
 		Double vlr, vlr1;
-		int i=0;
+		int i=0,pool=0;
 		while(cm.ordem[i]!=null){// && !cm.ordem[i].equals(""))
 			
 			fac=cm.ordem[i];
@@ -21,8 +21,8 @@ class Interpretador{
 				case("num"):{// no caso da criação das variaveis
 					i++;
 					while(!(cm.ordem[i].equals(";"))){
-						fac = cm.ordem[i];System.out.println("FAC = "+fac);
-						aux = cm.ordem[i+1];System.out.println("AUX = "+aux);
+						fac = cm.ordem[i];
+						aux = cm.ordem[i+1];
 						var = m.getVariavel(aux);
 						if(var != null){
 							vlr=var.getValor();
@@ -30,8 +30,7 @@ class Interpretador{
 						}
 						else{
 							try{
-								vlr= Double.parseDouble(aux);	
-								System.out.println(vlr);
+								vlr= Double.parseDouble(aux);
 								i++;
 							}catch(NumberFormatException errou){
 								vlr=0.0;
@@ -42,7 +41,7 @@ class Interpretador{
 						m.criaVariavel(fac,vlr);
 					i++;
 
-					}//System.out.println("Fim: "+var.getNome()+" "+var.getValor());
+					}
 					break;
 				}
 				case("op"):{
@@ -66,52 +65,33 @@ class Interpretador{
 						vlr1=var.getValor();	
 					else
 						vlr1=Double.parseDouble(ig[1]);
-					switch(op){
-						case("+"):{
-							vlr=vlr+vlr1;	
-							break;
-						}
-						case("-"):{
-							vlr=vlr-vlr1;
-							break;
-						}
-						case("x"):{
-							vlr=vlr*vlr1;
-							break;
-						}
-						case("÷"):{
-							vlr=vlr/vlr1;
-							break;
-						}
-						case("%"):{
-							vlr=vlr%vlr1;
-							break;
-						}
-					}
+						
 						i++;
 						fac=cm.ordem[i];
-					
-					var=m.getVariavel(fac);
+					vlr=verifica.operacao(vlr,vlr1,op);
+					//var=m.getVariavel(fac);
 					m.criaVariavel(fac,vlr);
 					break;
 				}
 				case("ler"):{// ler sua frase aqui será escrita até o caracter ":" abc;
 					i++;
-					
 					while(!fac.equals(":")){
 						fac=cm.ordem[i];
 						i++;
-						//System.out.println("FAC + "+fac);
 						var=m.getVariavel(fac);
 						if(var!=null)
-							System.out.println(var.getValor());
+							System.out.print(var.getValor());
+						else if(fac.equals("#")){							
+							System.out.print(cm.ordem[i]);
+							i++;
+						}
 						else if(fac.equals("||")){
-							System.out.printf("\n");
+							System.out.print("\n");
 						}
 						else if(fac.equals(":"))
-							System.out.printf("");
+							System.out.print("");
 						else
-							System.out.printf(fac+" ");
+							System.out.print(fac+" ");
 					}
 
 					fac=cm.ordem[i];
@@ -122,25 +102,16 @@ class Interpretador{
 					}
 					break;
 				}
-				case("func"):{
-
-					break;
-				}
-				case ("se"):{
-					//Mem aqui= new Mem();
-					int a=1, c=i+1;
-					System.out.println("SE\n");
+				case("loop"):{
+					pool=i;
+					int a=1, c=i;
 					while(a>0){
-						if(cm.ordem[c].equals("se"))
-							a++;
-						if(cm.ordem[c].equals("fimse")){
-				System.out.println("ACHOU PORRA"+a);
-							a=a-1;
-	//						System.out.println(a);
-						}
-	//					System.out.println(cm.ordem[c]);
-	//					System.out.println(a);
 						c++;
+						if(cm.ordem[c].equals("loop"))
+							a++;
+						if(cm.ordem[c].equals("pool")){
+							a=a-1;
+						}
 					}
 					i++;
 					ig[0]=cm.ordem[i];
@@ -160,42 +131,72 @@ class Interpretador{
 					else
 						vlr1=Double.parseDouble(ig[1]);
 
-					switch(op){
-						case(">="):{
-							if(!(vlr>=vlr1))
-								i=c;
-								break;
-						}
-						case("="):{
-							if(!(vlr==vlr1))
-								i=c;
-								break;
-						}
-						case("<="):{
-							if(!(vlr<=vlr1))
-								i=c++;
-								break;
-						}
-						case(">"):{
-							if(vlr<vlr1)
-								i=c;
-								break;
-						}
-						case("<"):{
-							if(!(vlr<vlr1)){
-								i=c++;
-								//System.out.println(cm.ordem[c]);
-							}
-								break;
-						}
-
+					if(verifica.vdd(vlr,vlr1,op)){
+						loop.add(i);
+						
+					}else{
+						i=c;
 					}
+					break;
+				}	
+				case ("pool"):{
+					if(loop.v_loop() == true){
+						i =loop.rem()-4;
+					}
+
+					
+					break;
+				}
+				case ("se"):{
+					int a=1, c=i;
+					while(a>0){
+						c++;
+						if(cm.ordem[c].equals("se"))
+							a++;
+						if(cm.ordem[c].equals("fimse")){
+							a=a-1;
+						}
+						
+					}
+					i++;
+					ig[0]=cm.ordem[i];
+					i++;
+					op=cm.ordem[i];
+					i++;
+					ig[1]=cm.ordem[i];
+
+					var=(m.getVariavel(ig[0]));
+					if(var!=null)
+						vlr=var.getValor();	
+					else
+						vlr=Double.parseDouble(ig[0]);
+					var=(m.getVariavel(ig[1]));
+					if(var!=null)
+						vlr1=var.getValor();	
+					else
+						vlr1=Double.parseDouble(ig[1]);
+
+					if(!(verifica.vdd(vlr,vlr1,op)))
+						i=c;
+
+
 
 
 					//if(aqui.)
 					break;
 				}
-				default:
+				case ("="):{
+					op=cm.ordem[i+1];
+					var=(m.getVariavel(op));
+					if(var!=null)
+						vlr=var.getValor();	
+					else
+						vlr=Double.parseDouble(op);
+
+					op=cm.ordem[i-1];
+					m.criaVariavel(op,vlr);
+
+				}
 	//				System.out.println("ge"+cm.ordem[i]);
 				
 			}
@@ -206,3 +207,17 @@ class Interpretador{
 		//m.exibe();
 	}
 }	
+
+
+/*
+	int a=0, b=3;
+	while (a<10) {
+		int b =0;
+		b=3;
+		System.out.println(b);
+	}
+	System.out.prinln(b);
+	b++;
+	System.out.prinln(b);
+	
+*/

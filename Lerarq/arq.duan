@@ -1,25 +1,19 @@
-num abc 3;
-num abcd 3;
-ler um numero || qualquer : abc;
-ler numero que quero saber se é primo : 123;
-op abc + 123 :abcd;
-ler apenas mostra abcd || || || : |; 
-num dez 10;
-op dez + 3 : dez;
-op 123 - dez : dez;
-ler abcd : |;
-ler dez : |;
-ler 123 : |;
-ler abc : |;
-op 45 + 45 : 45;
-ler 45 : |;
-se abc < 4
-	ler apenas entra if abc < 2 : |;
-	se abc = 4 
-		ler eu na prova de Prog1 : |;
-		fimse 
-	ler 45 a : |;
-	op 45 +3 :45;
-	ler antesfimse :|;
-fimse
-ler heh || :|;	
+num abc 1;
+num x 3;
+ler ABC eh abc :|;
+loop abc < 10
+	ler apenas entra while abc < 10 : | ;
+	op x - 3:x;
+	se abc = 3 
+		ler ABC eh abc :|;
+		abc = 5;
+	fimse
+	loop x < 7
+		op x + 1:x;
+		
+		ler || aqui x :|;
+
+	pool
+	op abc + 1:abc;
+pool
+	
