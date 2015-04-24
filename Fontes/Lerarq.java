@@ -54,30 +54,13 @@ public class Lerarq{
         }
 
         catch (FileNotFoundException ex){
-            System.out.println("ERRO 404");
+            System.out.println("Arquivo nao encontrado");
         }
          
         catch(IOException e){
-            System.out.println("fudeus");
+            System.out.println("Erro na leitura");
         }
-/*
-        //System.out.println("\n\n\n\n\n\nAGORA TUDOXUNTO!\n"); //IMPRIME TUDOXUNTO
-        //System.out.println(arquivo);
 
-
-
-        while(o<i){
-                StringTokenizer tokens = new StringTokenizer(linha[o]," "); // IMPRIME POR TOKENS
-                //System.out.println("\n\n\n\nAGORA POR TOOKENS!\n");     
-                while(tokens.hasMoreTokens())
-                {
-                    ordem[o]=tokens.nextToken();
-                    System.out.println(ordem[o]+" "+o);
-                    o++;
-                }
-                i++;
-            }
-            */
             
     }
 
