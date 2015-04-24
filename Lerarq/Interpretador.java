@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 class Interpretador{
 	Mem m= new Mem();
-	Verifica verifica = new Verifica();
 	Loop loop = new Loop();
 	public void comandos(Lerarq comando){		
 		String fac, aux,op;
@@ -46,7 +45,7 @@ class Interpretador{
 						if(var!=null)
 							System.out.print(var.getValor()+" ");
 						else if(fac.equals("#")){							
-							System.out.print(comando.ordem[i]);
+							System.out.print(comando.ordem[i]+" ");
 							i++;
 						}
 						else if(fac.equals("||")){
@@ -167,7 +166,6 @@ class Interpretador{
 							vlr1=var.getValor();	
 						else
 							vlr1=Double.parseDouble(ig[1]);
-						System.out.print(vlr+"\n"+vlr1+"\n"+op);
 						vlr=m.operacao(vlr,vlr1,op);
 					}else{
 						i--;
