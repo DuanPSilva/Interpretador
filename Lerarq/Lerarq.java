@@ -1,5 +1,3 @@
-package mypackage;
-
 import java.io.BufferedReader;  
 import java.io.FileInputStream;  
 import java.io.File;
@@ -34,12 +32,6 @@ public class Lerarq{
             while (buff.ready())
             {
                 linha[i] = buff.readLine();
-                /*if(linha[i].equals("Ler")){
-                    i=i+2;
-                    while(!(linha[i].equals("\"")) &&!(linha[i].equals(";"))){
-                        i++;
-                    }
-                }*/
                 linha[i]=linha[i].replace(";"," ;");
                 linha[i]=linha[i].replace(":"," : ");
                 linha[i]=linha[i].replace("="," = ");

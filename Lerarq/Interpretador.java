@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import mypackage.Lerarq;
 import java.util.StringTokenizer;
 class Interpretador{
 	Mem m= new Mem();

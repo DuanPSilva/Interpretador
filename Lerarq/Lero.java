@@ -1,4 +1,3 @@
-import mypackage.Lerarq;	
 import java.io.File;
 
 public class Lero{
