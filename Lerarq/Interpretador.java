@@ -1,88 +1,53 @@
-import java.util.Scanner;// só feito isso
+import java.util.Scanner;
 import mypackage.Lerarq;
 import java.util.StringTokenizer;
 class Interpretador{
 	Mem m= new Mem();
 	Verifica verifica = new Verifica();
 	Loop loop = new Loop();
-	public void comandos(Lerarq cm){
-		
-		String fac, aux;
+	public void comandos(Lerarq comando){		
+		String fac, aux,op;
 		Variavel var;
-		String op;
 		String ig[]=new String[2];
 		Double vlr, vlr1;
-		int i=0,pool=0;
-		while(cm.ordem[i]!=null){// && !cm.ordem[i].equals(""))
-			
-			fac=cm.ordem[i];
-			
+		int i=0,pool=0, fim=0;
+
+		while(comando.ordem[i]!=null){// && !comando.ordem[i].equals(""))			
+			fac=comando.ordem[i];			
 			switch(fac){
 				case("num"):{// no caso da criação das variaveis
 					i++;
-					while(!(cm.ordem[i].equals(";"))){
-						fac = cm.ordem[i];
-						aux = cm.ordem[i+1];
-						var = m.getVariavel(aux);
-						if(var != null){
-							vlr=var.getValor();
-							i++;
-						}
-						else{
-							try{
+					while(!(comando.ordem[i].equals(";"))){
+						fac = comando.ordem[i];
+						aux = comando.ordem[i+1];						
+						
+						if(aux.equals("=")){ // se existir o "=" a nova variavel vai receber o valor  que vier depois do "=", não admite expressão.
+							aux=comando.ordem[i+2];
+							i=i+2;
+							var = m.getVariavel(aux);
+							if(var != null)
+								vlr=var.getValor();
+							else
 								vlr= Double.parseDouble(aux);
-								i++;
-							}catch(NumberFormatException errou){
-								vlr=0.0;
-
-							}
-
+						}else{
+							vlr = 0.0;
 						}
 						m.criaVariavel(fac,vlr);
-					i++;
+						i++;
 
 					}
-					break;
-				}
-				case("op"):{
-					i++;
-					vlr=0.0;
-					ig[0]=cm.ordem[i];
-					i++;
-					op=cm.ordem[i];
-					i++;
-					ig[1]=cm.ordem[i];
-					i++;
-					fac=cm.ordem[i];
-
-					var=(m.getVariavel(ig[0]));
-					if(var!=null)
-						vlr=var.getValor();	
-					else
-						vlr=Double.parseDouble(ig[0]);
-					var=(m.getVariavel(ig[1]));
-					if(var!=null)
-						vlr1=var.getValor();	
-					else
-						vlr1=Double.parseDouble(ig[1]);
-						
-						i++;
-						fac=cm.ordem[i];
-					vlr=verifica.operacao(vlr,vlr1,op);
-					//var=m.getVariavel(fac);
-					m.criaVariavel(fac,vlr);
 					break;
 				}
 				case("ler"):{// ler sua frase aqui será escrita até o caracter ":" abc;
 					i++;
 					while(!fac.equals(":")){
-						fac=cm.ordem[i];
+						fac=comando.ordem[i];
 						i++;
 						var=m.getVariavel(fac);
 						if(var!=null)
-							System.out.print(var.getValor());
+							System.out.print(var.getValor()+" ");
 						else if(fac.equals("#")){							
-							System.out.print(cm.ordem[i]);
+							System.out.print(comando.ordem[i]);
 							i++;
 						}
 						else if(fac.equals("||")){
@@ -94,31 +59,34 @@ class Interpretador{
 							System.out.print(fac+" ");
 					}
 
-					fac=cm.ordem[i];
-					if(!fac.equals("|")){
+					fac=comando.ordem[i];
+					// para fazer uma pausa,(ficar esperando o usuario precionar um numero e enter). mas o numero não tem importancia alguma, basta deixar o espaço entre o : e ; vazio.
+					//ex: ler para prosseguir digite um numero e aperte enter:;
+					// para fazer apenas impressão, sem leitura, colocar "|" entre : e ; 
+					if(!fac.equals("|")){// para fazer uma leitura para dentro de uma variavel, basta coloca-la entre : e ; . ex: ler insira peso : xpeso;
 						Scanner s = new Scanner(System.in);
 						vlr=s.nextDouble();
 						m.criaVariavel(fac,vlr);
 					}
 					break;
 				}
-				case("loop"):{
+				case("loop"):{// para fazer um laço a palavra loop deve ser seguida de uma expressão com no maximo duas variaveis e sem possibilidade de operação.
 					pool=i;
 					int a=1, c=i;
 					while(a>0){
 						c++;
-						if(cm.ordem[c].equals("loop"))
+						if(comando.ordem[c].equals("loop"))
 							a++;
-						if(cm.ordem[c].equals("pool")){
+						if(comando.ordem[c].equals("pool")){
 							a=a-1;
 						}
 					}
 					i++;
-					ig[0]=cm.ordem[i];
+					ig[0]=comando.ordem[i];
 					i++;
-					op=cm.ordem[i];
+					op=comando.ordem[i];
 					i++;
-					ig[1]=cm.ordem[i];
+					ig[1]=comando.ordem[i];
 
 					var=(m.getVariavel(ig[0]));
 					if(var!=null)
@@ -131,7 +99,7 @@ class Interpretador{
 					else
 						vlr1=Double.parseDouble(ig[1]);
 
-					if(verifica.vdd(vlr,vlr1,op)){
+					if(m.vdd(vlr,vlr1,op)){
 						loop.add(i);
 						
 					}else{
@@ -151,19 +119,18 @@ class Interpretador{
 					int a=1, c=i;
 					while(a>0){
 						c++;
-						if(cm.ordem[c].equals("se"))
+						if(comando.ordem[c].equals("se"))
 							a++;
-						if(cm.ordem[c].equals("fimse")){
+						if(comando.ordem[c].equals("fimse")){
 							a=a-1;
-						}
-						
+						}						
 					}
 					i++;
-					ig[0]=cm.ordem[i];
+					ig[0]=comando.ordem[i];
 					i++;
-					op=cm.ordem[i];
+					op=comando.ordem[i];
 					i++;
-					ig[1]=cm.ordem[i];
+					ig[1]=comando.ordem[i];
 
 					var=(m.getVariavel(ig[0]));
 					if(var!=null)
@@ -176,48 +143,45 @@ class Interpretador{
 					else
 						vlr1=Double.parseDouble(ig[1]);
 
-					if(!(verifica.vdd(vlr,vlr1,op)))
+					if(!(m.vdd(vlr,vlr1,op)))
 						i=c;
-
-
-
-
-					//if(aqui.)
 					break;
 				}
-				case ("="):{
-					op=cm.ordem[i+1];
-					var=(m.getVariavel(op));
-					if(var!=null)
-						vlr=var.getValor();	
-					else
-						vlr=Double.parseDouble(op);
-
-					op=cm.ordem[i-1];
-					m.criaVariavel(op,vlr);
-
-				}
-	//				System.out.println("ge"+cm.ordem[i]);
 				
+				case ("="):{ 
+					fac=comando.ordem[i-1];
+					i++;
+					ig[0]=comando.ordem[i];
+					i++;
+					op =comando.ordem[i];
+					
+						i++;
+						ig[1]=comando.ordem[i];
+						var=(m.getVariavel(ig[0]));
+						if(var!=null)
+							vlr=var.getValor();	
+						else
+							vlr=Double.parseDouble(ig[0]);
+					if(!(op.equals(";"))){
+						var=(m.getVariavel(ig[1]));
+						if(var!=null)
+							vlr1=var.getValor();	
+						else
+							vlr1=Double.parseDouble(ig[1]);
+						System.out.print(vlr+"\n"+vlr1+"\n"+op);
+						vlr=m.operacao(vlr,vlr1,op);
+					}else{
+						i--;
+						vlr=m.operacao(vlr,0,"+");
+					}
+					m.criaVariavel(fac,vlr);
+					//i++;
+					break;					
+				}				
 			}
 
 			i++;
 
 		}
-		//m.exibe();
 	}
 }	
-
-
-/*
-	int a=0, b=3;
-	while (a<10) {
-		int b =0;
-		b=3;
-		System.out.println(b);
-	}
-	System.out.prinln(b);
-	b++;
-	System.out.prinln(b);
-	
-*/
