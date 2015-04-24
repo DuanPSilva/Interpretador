@@ -15,7 +15,7 @@ class Loop{
 	public int rem(){
 		if(this.ult != -1){
 			this.ult--;
-			System.out.print(this.ult);
+			//System.out.print(this.ult);
 			return (p_ini_loop[this.ult + 1]);
 		}else{
 			return 0;

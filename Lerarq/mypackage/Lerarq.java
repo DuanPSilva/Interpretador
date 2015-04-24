@@ -34,6 +34,12 @@ public class Lerarq{
             while (buff.ready())
             {
                 linha[i] = buff.readLine();
+                /*if(linha[i].equals("Ler")){
+                    i=i+2;
+                    while(!(linha[i].equals("\"")) &&!(linha[i].equals(";"))){
+                        i++;
+                    }
+                }*/
                 linha[i]=linha[i].replace(";"," ;");
                 linha[i]=linha[i].replace(":"," : ");
                 linha[i]=linha[i].replace("="," = ");
@@ -43,7 +49,11 @@ public class Lerarq{
                 linha[i]=linha[i].replace("/"," / ");
                 linha[i]=linha[i].replace("÷"," / ");
                 linha[i]=linha[i].replace("%"," % ");
+                linha[i]=linha[i].replace("#"," # ");
                 linha[i]=linha[i].replace("||"," || ");
+                linha[i]=linha[i].replace("<"," < ");
+                linha[i]=linha[i].replace(">"," > ");
+
                 arquivo += linha[i];
                 //System.out.println(linha[i]);
                 i++;
