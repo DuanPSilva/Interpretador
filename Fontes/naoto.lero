@@ -1,0 +1,4 @@
+num a = 1;
+loop a < 5
+ler || :|;
+pool

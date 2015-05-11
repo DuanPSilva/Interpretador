@@ -1,4 +1,4 @@
-ler ||Olá Mundo!||:|;
+ler ||Ola Mundo!||:|;
 num a;
 a=2;
 ler || #a = a:|;
@@ -16,7 +16,7 @@ i
        4  
        ;
 loop i<10
-	ler || #i :|;
+	ler || a : | ;
 	i=i+1;
 pool
 
