@@ -3,16 +3,33 @@ num a;
 a=2;
 ler || #a = a:|;
 
+
+
 num i=0;
+
+i 
+ = 
+    2 
+ - 
+
+
+       4  
+       ;
 loop i<10
-	ler || #i i:|;
+	ler || #i :|;
 	i=i+1;
+pool
+
+num jar = 8;
+loop jar<10
+	ler || #jar : ;
+	jar=jar+1;
 pool
 
 num a b;
 a=1+1;
 b=3+a;
-ler || # a eh a:|;
+ler ||  a eh #a:|;
 ler ||b:|;
 
 se a>1
@@ -24,18 +41,18 @@ fimse
 
 num x = 1 abc=4;
 
-ler || aqui o ABC = abc trinta ou e X x :x;
+ler || aqui o abc = #abc trinta ou e x #x :x;
 loop x < 5
-	ler ||Xeh x :|;
+	ler || x= #x :|;
 	x=x+1;
 	se x = 3
 		x=10;
 		se abc =4
 			x = x * 10;
-			ler x:|;
+			ler x :|;
 			se x>90
 				x=x%3;
-				ler o valor de # x eh x:|;
+				ler o valor de  x eh #x:|;
 				x=100;
 
 			fimse
@@ -43,4 +60,4 @@ loop x < 5
 	fimse
 pool
 
-ler ||Xeh no fim x :|;
+ler || no fim x eh #x :|;

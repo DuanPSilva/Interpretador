@@ -1,3 +1,15 @@
+/* Universidade Federal da Fronteira Sul
+   Ciência da Computação
+   Disciplina: Programação I
+   Professor: Fernando Bevilacqua
+   Acadêmicos:  Duan Pedroso da Silva
+				Jardel Anton
+
+   ** Interpretador **
+*/
+
+
+
 class Mem{
 	private Variavel[] vetor= new Variavel[100000];
 	
@@ -82,8 +94,11 @@ class Mem{
 		int i=0;
 		while(i<10){
 			try{
-				if(Integer.parseInt(Character.toString(aha.charAt(0)))==i)
+				if(Integer.parseInt(Character.toString(aha.charAt(0)))==i){
+					System.out.println("Nao use variaveis com primeiro caracter sendo um numero");
 					return false;
+
+				}
 				
 				i++;
 			}catch(NumberFormatException errou){

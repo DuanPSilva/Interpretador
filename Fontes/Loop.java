@@ -1,3 +1,15 @@
+/* Universidade Federal da Fronteira Sul
+   Ciência da Computação
+   Disciplina: Programação I
+   Professor: Fernando Bevilacqua
+   Acadêmicos:  Duan Pedroso da Silva
+				Jardel Anton
+
+   ** Interpretador **
+*/
+
+
+
 class Loop{
 	private int p_ini_loop[];
 	private int ult;

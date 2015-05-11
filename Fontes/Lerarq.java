@@ -46,8 +46,6 @@ public class Lerarq{
                 linha[i]=linha[i].replace("<"," < ");
                 linha[i]=linha[i].replace(">"," > ");
 
-                arquivo += linha[i];
-                //System.out.println(linha[i]);
                 i++;
             }
             buff.close();
@@ -82,4 +80,4 @@ public class Lerarq{
             x++;
         }
     }
-} 
+}

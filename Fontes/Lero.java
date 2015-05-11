@@ -6,18 +6,25 @@
 				Jardel Anton
 
    ** Interpretador **
- */
+*/
+
 
 
 import java.io.File;
 
 public class Lero{
 	public static void main(String args[]){
-		Interpretador inter= new Interpretador();
+		
 		String arquivo = args[0];
-		File file = new File(arquivo);
-		Lerarq leia = new Lerarq(file);
-		leia.separa();
-		inter.comandos(leia);
+		if(arquivo.indexOf(".lero")!=-1){
+			Interpretador inter= new Interpretador();
+			File file = new File(arquivo);
+			Lerarq leia = new Lerarq(file);
+			leia.separa();
+			inter.comandos(leia);
+		}else{
+			System.out.println("Arquivo nao eh .lero");
+		}
+
 	}	
 }
