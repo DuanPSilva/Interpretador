@@ -4,7 +4,6 @@
    Professor: Fernando Bevilacqua
    Acadêmicos:  Duan Pedroso da Silva
 				Jardel Anton
-
    ** Interpretador **
 */
 
@@ -191,4 +190,4 @@ class Interpretador{
 		return m.vdd(vlr,vlr1,op);
 	}
 
-}	
+}
