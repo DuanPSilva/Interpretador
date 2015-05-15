@@ -150,7 +150,6 @@ class Interpretador{
 						else{
 							try{	
 								vlr1=Double.parseDouble(ig[1]);
-								System.out.print(vlr1);
 							}catch(NumberFormatException nFe){
 								break;
 							}
