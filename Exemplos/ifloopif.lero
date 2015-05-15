@@ -1,0 +1,12 @@
+num a;
+a = 1 + 1;
+se a = 2
+	loop a < 10
+		se a= 5
+			a=10;
+		fimse
+		a=a+1;
+		ler || a no laco = #a:|;		
+	pool
+fimse
+ler a = #a:|;

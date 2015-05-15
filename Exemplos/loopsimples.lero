@@ -1,0 +1,7 @@
+num a b c;
+loop a<3
+ler ||insira b:b;
+a=a+1;
+c = a*b;
+ler ||#a #b #c:|;
+pool
